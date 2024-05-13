@@ -24,7 +24,11 @@ public class EventController {
     @PostMapping("message")
     public ResponseEntity<String> publishMessage(@RequestBody Message message){
         try {
-            kafkaMessagePublisherService.sendMessageToTopic(message);
+            int count = 999999;
+            while(count>0) {
+                kafkaMessagePublisherService.sendMessageToTopic(message);
+                count--;
+            }
             return new ResponseEntity<>("Message Successfully Published", HttpStatus.OK);
         } catch (Exception _){
             return new ResponseEntity<>("Not able to send message", HttpStatus.INTERNAL_SERVER_ERROR);
