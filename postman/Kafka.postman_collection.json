@@ -10,13 +10,43 @@
 			"name": "producer",
 			"item": [
 				{
-					"name": "Publish Message",
+					"name": "Publish String Message",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"topic\":\"Aaj-Tak\",\n    \"msg\":\"The headline of today is that Kafka producer is working\"\n}",
+							"raw": "{\n    \"topic\":\"NDTV\",\n    \"msg\":\"RCB has won the IPL 2024.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/kafka/producer/message",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"kafka",
+								"producer",
+								"message"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Publish Customer Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"topic\":\"NDTV\",\n    \"msg\":\"RCB has won the IPL 2024.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -46,7 +76,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Aaj-Tak\",\n    \"numPartitions\":2,\n    \"replicationFactor\":1\n}",
+							"raw": "{\n    \"name\":\"Cricket\",\n    \"numPartitions\":3,\n    \"replicationFactor\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"

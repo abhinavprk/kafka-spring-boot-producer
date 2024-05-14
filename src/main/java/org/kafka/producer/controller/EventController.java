@@ -1,5 +1,6 @@
 package org.kafka.producer.controller;
 
+import org.kafka.producer.dto.Customer;
 import org.kafka.producer.dto.Message;
 import org.kafka.producer.service.KafkaMessagePublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +23,26 @@ public class EventController {
     }
 
     @PostMapping("message")
-    public ResponseEntity<String> publishMessage(@RequestBody Message message){
+    public ResponseEntity<String> publishStringMessage(@RequestBody Message<String> message) {
         try {
-            int count = 999999;
-            while(count>0) {
-                kafkaMessagePublisherService.sendMessageToTopic(message);
+            int count = 5;
+            while (count > 0) {
+                kafkaMessagePublisherService.sendStringMessageToTopic(message);
                 count--;
             }
             return new ResponseEntity<>("Message Successfully Published", HttpStatus.OK);
-        } catch (Exception _){
+        } catch (Exception _) {
             return new ResponseEntity<>("Not able to send message", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
-
-
+    @PostMapping("message/customer")
+    public ResponseEntity<String> publishCustomerMessage(@RequestBody Message<Customer> message) {
+        try {
+            kafkaMessagePublisherService.sendCustomerMessageToTopic(message);
+            return new ResponseEntity<>("Customer Message Successfully Published", HttpStatus.OK);
+        } catch (Exception _) {
+            return new ResponseEntity<>("Not able to send Customer message", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

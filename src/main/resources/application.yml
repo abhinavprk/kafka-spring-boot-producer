@@ -4,7 +4,9 @@ server:
     context-path: /kafka
 
 
-spring:
-  kafka:
-    producer:
-      bootstrap-server: localhost:9092
+#spring:
+#  kafka:
+#    producer:
+#      bootstrap-server: localhost:9092
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
